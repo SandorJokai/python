@@ -4,7 +4,7 @@
 
 
 import random
-user_input = input("Let's play, rock || paper || scissors: ")
+user_input = input("Let's play, (R)ock || (P)aper || (S)cissors: ")
 rock = ""
 paper = ""
 scissors = ""
@@ -14,11 +14,11 @@ m_scissors = ""             # machine_scissors
 
 random = random.randint(1, 3)
 
-if user_input == "rock":
+if user_input.lower() == "r":
     rock = 1
-elif user_input == "paper":
+elif user_input.lower() == "p":
     paper = 2
-elif user_input == "scissors":
+elif user_input.lower() == "s":
     scissors = 3
 else:
     print("You mistyped!")
