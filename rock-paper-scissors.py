@@ -32,24 +32,12 @@ else:
 
 
 def result():
-    if rock and m_rock:
+    if rock and m_rock or paper and m_paper or scissors and m_scissors:
         print("50-50!")
-    elif rock and m_paper:
+    elif rock and m_paper or paper and m_scissors or scissors and m_rock:
         print("You lose!")
-    elif rock and m_scissors:
+    elif rock and m_scissors or paper and m_rock or scissors and m_paper:
         print("You win!")
-    elif paper and m_rock:
-        print("You win!")
-    elif paper and m_paper:
-        print("50-50!")
-    elif paper and m_scissors:
-        print("You lose!")
-    elif scissors and m_rock:
-        print("You lose!")
-    elif scissors and m_paper:
-        print("You win!")
-    elif scissors and m_scissors:
-        print("50-50!")
 
 
 result()
