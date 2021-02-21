@@ -1,4 +1,4 @@
-# I am pretty sure that the code could to be make shorter and simpler, but my purpose this time was just create my first python script to upload. 
+# I am pretty sure that the code could to be make shorter and simpler, but my purpose this time was just to create my first python script to upload. 
 # I am aware of the very basic concepts of programming (variables, loops, statements, data types & structures...) which is the lowest level in
 # programming. My aim with python is just the same as with bash: to be able to make solutions for automation...
 
