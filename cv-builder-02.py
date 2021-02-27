@@ -1,4 +1,3 @@
-# https://www.youtube.com/watch?v=mJEpimi_tFo&t=5363s
 # Before we go any further... pip install python-docx -> to this project below, we only need this lib.
 
 from docx import Document
