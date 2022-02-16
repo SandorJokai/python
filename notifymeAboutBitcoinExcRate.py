@@ -9,7 +9,7 @@
 #         - .credentials must be exists in the same directory where the script is with the credentials in json format, like: 
 #           { 
 #             "API_KEY":"HASHED-KEY",
-#	            "API_SECRET":"HASHED-SECRET"
+#	       "API_SECRET":"HASHED-SECRET"
 #           }
 #         - encrypted_data.bin must be exists contains the hashed password to the email login
 # The script can run by launching from commandline, but it's more efficient and powerful if we put it into crontab 
