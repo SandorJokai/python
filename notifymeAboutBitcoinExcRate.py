@@ -6,7 +6,7 @@
 # Requirements to run the script:
 #         - python3.8 must be installed and ready to use (not tested with any other 3.x versions)
 #         - coinbase, smtplib, json modules must be pre-installed
-#         - .credentials must be exists in the same directory where the script is with the credentials in a json format, like: 
+#         - .credentials must be exists in the same directory where the script is with the credentials in json format, like: 
 #           { 
 #             "API_KEY":"HASHED-KEY",
 #	            "API_SECRET":"HASHED-SECRET"
