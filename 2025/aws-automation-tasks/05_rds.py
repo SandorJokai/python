@@ -9,6 +9,7 @@ warnings.filterwarnings("ignore", category=PythonDeprecationWarning)
 
 rds       = boto3.client('rds')
 db_name   = 'mydb-via-boto3'
+renamed   = 'renamed-database'
 db_subnet = 'vpc-with-python'
 password  = os.getenv('EXCH_API')
 cluster   = 'db-cluster-01'
@@ -62,7 +63,7 @@ def create_or_check_database(rds, db_name, username, password) -> bool:
             PubliclyAccessible=True,
             BackupRetentionPeriod=1
         )
-        print(f"Database - '{db_name}' has successfully been created.")
+        print(f"Database - '{db_name}' is being created...")
 
         while True:
             response = rds.describe_db_instances(DBInstanceIdentifier=db_name)
@@ -75,26 +76,29 @@ def create_or_check_database(rds, db_name, username, password) -> bool:
             print("Waiting for the db to be available...\n")
             time.sleep(60)
 
+        print(f"Database - '{db_name}' has successfully been created.")
         return True
 
 
 def scaling_db(rds, db_name) -> True:
     rds.modify_db_instance(
         DBInstanceIdentifier=db_name,
-        ScalingConfiguration={
-            'MinCapacity': 1,
-            'MaxCapacity': 2,
-            'AutoPause': True,
-            'SecondsUntilAutoPause': 600,
-        },
+        NewDBInstanceIdentifier=renamed,
+        ApplyImmediately=True,
+## In free tier we can't really scale so I choose the NewDBInstanceIdentifier option to demonstrate how we can update things after creation.
+#        ProcessorFeatures=[
+#            {
+#                'Name': 'coreCount',
+#                'Value': 4
+#            }]
     )
     print(f"Database - '{db_name}' has been scaled.")
     return True
 
 
-def delete_db(rds, db_name) -> True:
+def delete_db(rds, renamed) -> True:
     rds.delete_db_instance(
-        DBInstanceIdentifier=db_name,
+        DBInstanceIdentifier=renamed,
         SkipFinalSnapshot=True,
     )
     print(f"Database - '{db_name}' is being deleted...")
@@ -105,4 +109,4 @@ if __name__ == "__main__":
 #    check_or_create_cluster(rds, db_name, username, password, db_subnet, cluster)
     create_or_check_database(rds, db_name, username, password)
 #    scaling_db(rds, db_name)
-#    delete_db(rds, db_name)
+#    delete_db(rds, renamed)
