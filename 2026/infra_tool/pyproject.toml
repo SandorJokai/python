@@ -1,9 +1,9 @@
 [project]
-name = "infra-tool"
-version = "0.1.0"
+name = "system-infra-tool"
+version = "1.0.6"
 requires-python = ">=3.9"
-dependencies = ["pyyaml", "psutil"]
+dependencies = ["pyyaml", "psutil", "click"]
 
 [project.scripts]
-infra-tool = "infra_tool.main:main"
+infra-tool = "infra_tool.cli:cli"
 
