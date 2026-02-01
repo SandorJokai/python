@@ -38,11 +38,22 @@ def show_logs(last_hour: bool=False):
     for line in apache_logs.stdout.splitlines():
 
         if "Started The Apache" in line:
-            match = re.search(r"(\w.{3}.\d\s\d.\:\d.\:\d.)", line)
+            match = re.search(r"(\w.{3,4}.\d\s\d.\:\d.\:\d.)", line)
 
             if match:
                 match_str = match.group()
-                converted = datetime.strptime(f"{year} {match_str}", "%Y %b %d %H:%M:%S")
+                MONTH_MAP = {           # Fix for febr as got ValueError error with converted variable previously
+                    "febr": "feb",
+                }
+
+                parts = match_str.split()
+                month = parts[0].lower()
+
+                if month in MONTH_MAP:
+                    parts[0] = MONTH_MAP[month].capitalize()
+
+                normalized = f"{year} {' '.join(parts)}"
+                converted = datetime.strptime(normalized, "%Y %b %d %H:%M:%S")
                 convert_to_unix = float(converted.timestamp())
 
                 if convert_to_unix > last_hour:
