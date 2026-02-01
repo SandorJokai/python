@@ -3,7 +3,7 @@ import subprocess
 from datetime import datetime, timedelta
 from pathlib import Path
 
-backup_dest = Path("/home/shanx/DevOps/2025/python/projects/practising/08_system_health/infra_tool/utils/backup_dir/")
+backup_dest = Path.home()/"infra-tool-backups"
 
 
 def days_ago_to_epoch(days: int) -> int:
@@ -13,6 +13,9 @@ def days_ago_to_epoch(days: int) -> int:
 
 def create_backup():
     backup_source = input("Type absolute path to create the backup from: ")
+
+    if not backup_dest.is_dir():
+        backup_dest.mkdir()
 
     if backup_source.endswith("/"):
         backup_source = backup_source.rstrip("/")
