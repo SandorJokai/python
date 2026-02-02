@@ -1,9 +1,26 @@
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+infra_tool = ["config/*.yaml"]
+
 [project]
 name = "system-infra-tool"
-version = "2.0.1"
+version = "2.1.1"
 requires-python = ">=3.9"
-dependencies = ["pyyaml", "psutil", "click"]
+
+dependencies = [
+    "PyYAML==6.0.3",
+    "psutil>=5.9",
+    "click>=8.1"
+]
 
 [project.scripts]
 infra-tool = "infra_tool.cli:cli"
-

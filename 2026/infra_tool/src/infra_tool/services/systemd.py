@@ -1,8 +1,8 @@
 import subprocess
 import yaml
-from pathlib import Path
+from importlib.resources import files
 
-config_file = Path("/home/shanx/DevOps/2025/python/projects/practising/08_system_health/infra_tool/config/data.yaml")
+config_file = files("infra_tool.config").joinpath("data.yaml")
 
 
 def read_from_yaml():
